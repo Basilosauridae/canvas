@@ -45,3 +45,45 @@ ctx.fillRect(100,100,200,50)
 > 绘制矩形： ctx.fillRect(x,y,c,d)，xy表示位置，cd表宽高
 
 canvas本质上利用代码在浏览器的页面上画画
+
+
+
+### 1.2 canvas的像素化
+
+用canvas绘制一个图形，一旦绘制成功，就像素化，无法修改已经在画布上的内容。这也是其轻量化原因（不同于flash）
+
+让canvas图像移动，要按清屏-更新-渲染的逻辑进行编程
+
+
+
+### 1.3 canvas的动画思想
+
+面向对象的动画 都是清屏-更新-渲染的逻辑
+
+```js
+// 获取画布
+var canvas = document.getElementById('myCanvas')
+// 获取上下文并设置颜色和信号量
+var ctx = canvas.getContext('2d')
+ctx.fillStyle = 'plum'
+var left = 100
+// 动画过程
+setInterval(function(){
+  // 清除画布，前两位参数从什么位置开始清除，后两位参数是清除的宽度和高度
+  ctx.clearRect(0,0,600,600)
+  left++ // 更新信号量
+  ctx.fillRect(left,100,100,100) //重新绘制，canvas画布上的元素被像素化了，不能通过style.left方法修改，
+},10)
+```
+
+实际上，动画的生成，就是静态画面连续播放 以上用了定时器
+
+将每次绘制的静态画面叫 `一帧`，时间的间隔就是定时器的间隔`帧的间隔`
+
+
+
+### 1.4 面向对象思维的实现
+
+canvas无法获取已上屏的对象，所以需要维持对象的状态。
+
+在canvas动画中，使用面向对象的方式维护canvas所需的状态

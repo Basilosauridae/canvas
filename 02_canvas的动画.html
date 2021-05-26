@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <canvas id="myCanvas" width="600" height="600"></canvas>
+  <script>
+    // 获取画布
+    var canvas = document.getElementById('myCanvas')
+    // 获取上下文并设置颜色和信号量
+    var ctx = canvas.getContext('2d')
+    ctx.fillStyle = 'plum'
+    var left = 100
+    // 动画过程
+    setInterval(function(){
+      // 清除画布，前两位参数从什么位置开始清除，后两位参数是清除的宽度和高度
+      ctx.clearRect(0,0,600,600)
+      left++ // 更新信号量
+      ctx.fillRect(left,100,100,100) //重新绘制，canvas画布上的元素被像素化了，不能通过style.left方法修改，
+    },10)
+    console.log( ctx )
+  </script>
+</body>
+</html>
