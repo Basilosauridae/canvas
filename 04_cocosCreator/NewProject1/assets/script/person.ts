@@ -22,7 +22,8 @@ export default class NewClass extends cc.Component {
     @property
     step:number = 20
 
-
+    @property(cc.AudioClip)
+    audio:cc.AudioClip = null
     // LIFE-CYCLE CALLBACKS:
 
     // this 当前组件
@@ -46,7 +47,12 @@ export default class NewClass extends cc.Component {
         }else{
             this.node.x += this.step
         }
+        // 播放脚步声
+        if(this.audio != null){
+            cc.audioEngine.play(this.audio,false,1)
+        }
     }
+
 
    /*  update (dt) {
         // 每帧执行
