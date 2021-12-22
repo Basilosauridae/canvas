@@ -1,4 +1,4 @@
-
+// 左右切换
 const {ccclass, property} = cc._decorator;
 
 @ccclass

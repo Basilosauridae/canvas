@@ -1,4 +1,4 @@
-// 缓动系统
+// 缓动系统-旋转的小新
 const {ccclass, property} = cc._decorator;
 
 @ccclass

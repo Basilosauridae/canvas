@@ -1,3 +1,4 @@
+// 缓动系统-弹力篮球
 const {ccclass, property} = cc._decorator;
 
 @ccclass

@@ -1,4 +1,4 @@
-
+// 组件方法的调用
 const {ccclass, property} = cc._decorator;
 
 @ccclass
