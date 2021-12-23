@@ -4,6 +4,13 @@ const {ccclass, property} = cc._decorator;
 @ccclass
 export default class NewClass extends cc.Component {
 
+    @property(cc.Node)
+    car:cc.Node = null
+
+    protected onLoad(): void {
+        this.car = cc.find('Canvas/car')
+    }
+
     start () {
         this.node.on('touchstart',this.onTouchStart,this)
         this.node.on('touchmove',this.onTouchMove,this)
@@ -37,6 +44,14 @@ export default class NewClass extends cc.Component {
             pos.y = maxR*direction.y // r*sin
         }
         this.node.setPosition(pos)
+
+        // 4.根据手柄的方向同步小车移动的方向
+        /* 弧度值radian = a.angle(b) 求a和b两个向量的夹角
+           cc.v2(1,0)表示x轴方向的单位向量
+         */
+        let radian = pos.signAngle(cc.v2(1,0))
+        let angle = radian/Math.PI*180
+        this.car.angle = -angle //按API要求，angle是按顺时针为正
     }
 
     onTouchCancel(){
