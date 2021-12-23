@@ -6,18 +6,21 @@ const {ccclass, property} = cc._decorator;
 export default class NewClass extends cc.Component {
 
     @property(cc.Label)
-    label: cc.Label = null;
+    label: cc.Label = null
 
     @property
-    text: string = 'hello';
+    text: string = 'hello'
+
+    @property(cc.AudioClip) //不写这个cocos组件中不显示
+    audio:cc.AudioClip
+
 
     // LIFE-CYCLE CALLBACKS:
 
     onLoad () {
         cc.game.setFrameRate(30)
+        if(this.audio != null)
+            cc.audioEngine.play(this.audio,false,1)
     }
-
-    // start () {}
-
-    // update (dt) {}
+    
 }
