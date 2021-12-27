@@ -24,7 +24,7 @@ export default class NewClass extends cc.Component {
        if(this.frames.length == 0) return
 
        this.sprite.spriteFrame = this.frames[this.index]
-
+        
        //下一帧
        this.index++
        if(this.index >= this.frames.length)
