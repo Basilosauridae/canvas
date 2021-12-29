@@ -21,10 +21,6 @@ export default class NewClass extends cc.Component {
         cc.systemEvent.on('keydown',this.onKeyDown,this)
     }
 
-    // start () {}
-
-    // update (dt) {}
-
     onKeyDown(evt:cc.Event.EventKeyboard){
         if(evt.keyCode == cc.macro.KEY.left){
             this.moveLeft()
