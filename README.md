@@ -494,3 +494,35 @@ canvas无法获取已上屏的对象，所以需要维持对象的状态。
 [官方文档]: https://docs.cocos.com/creator/manual/zh/asset/atlas.html	"类似雪碧图"
 
 
+### 资源的动态加载
+  1. 资源加载有两种方式，静态加载直接在属性管理器指定，节点加载时一并加载
+
+  2. 动态加载 使用`cc.resources.load()`运行
+    ```jsx
+    //点击图片时 动态加载一张图片显示 点击小手变爱心
+    onClicked(){
+        let self = this //闭包语法
+
+        // 'icon/love'待加载的资源必须放在resources目录下，路径不能带后缀名
+        cc.resources.load('icon/love',cc.SpriteFrame,function(err,assets){
+           if(err) { cc.log(err);return}
+           /* cc.log(this.node,'this')
+           cc.log(self.node,'self') */
+
+           // 为什么用self不用this 因为回调中无法直接调用this 所以先定义
+           self.node.getComponent(cc.Sprite).spriteFrame = <cc.SpriteFrame> assets //<cc.SpriteFrame>类型转化
+        })
+
+      }
+    }
+    ```
+  3. 动态加载多个资源
+    `详见NewProject3/moreLoad.ts`
+    ```jsx
+    //指定多个资源路径：paths类型cc.String,assets类型cc.Asset
+    cc.resources.load(paths,callback(err,assets){...})
+
+    //指定一个资源目录： path是文件夹路径，assets类型是cc.Asset
+    cc.resources.loadDir(path,callback(err,assets){...})
+    ```
+
