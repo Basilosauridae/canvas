@@ -526,16 +526,16 @@ canvas无法获取已上屏的对象，所以需要维持对象的状态。
     cc.resources.loadDir(path,callback(err,assets){...})
     ```
 ### 事件的冒泡
-  1. 触摸事件
+1. 触摸事件
 
-    触摸事件：touchstart、touchmove、touchend、touchcancel
+  触摸事件：touchstart、touchmove、touchend、touchcancel
 
-    鼠标事件：mousedown、mousemove、mouseup、mousewheel、mouseenter、mouseleava
+  鼠标事件：mousedown、mousemove、mouseup、mousewheel、mouseenter、mouseleava
 
-    教程中，`统一使用触摸事件`
+  教程中，`统一使用触摸事件`
 
 2. 事件冒泡机制
-    
+
     Event Bubbles事件冒泡，与网页开发的冒泡机制相同（`特指触摸事件 不适用鼠标事件`）
 
     同级节点不会接收到touchstart事件
@@ -550,3 +550,33 @@ canvas无法获取已上屏的对象，所以需要维持对象的状态。
 
    这里会用到 Widget组件，用于辅助定位，添加此组件，将上下左右边距设为0
    <img src="./image/Snipaste_2021-12-31_17-48-37.png"/>
+
+4. 游戏提示框案例
+  ```js
+  onLoad(){
+    this.node.on('touchstart',this.onTouch,this)
+  }
+  onTouch(){
+    //隐藏对话框
+    let node:cc.Node = cc.find('Canvas/提示框')
+    node.active = false
+  }
+  ```
+
+5. Block Input Events
+  cocos中自带的组件，用于阻止输入事件
+  ```js
+  onLoad(){
+    this.node.on('touchstart',this.stopEvents,this)
+    this.node.on('touchmove',this.stopEvents,this)
+    this.node.on('touchend',this.stopEvents,this)
+    this.node.on('touchcancel',this.stopEvents,this)
+  }
+  stopEvents(e:cc.Event){
+    e.stopPropagation()
+  }
+  ```
+
+### 发射子弹
+1. 发射子弹
+  模拟子弹发射的效果，炮塔、发射、爆炸
