@@ -58,7 +58,7 @@
     "_groupIndex": 0,
     "groupIndex": 0,
     "autoReleaseAssets": true,
-    "_id": "17NcxWaDxJYZnz93goa2mX"
+    "_id": "00541c37-3161-4ce2-aa3b-e4b4b4eb6b86"
   },
   {
     "__type__": "cc.Node",
@@ -174,7 +174,7 @@
       "array": [
         0,
         0,
-        333.4142401949619,
+        333.5203590907889,
         0,
         0,
         0,
@@ -463,7 +463,10 @@
     },
     "_enabled": true,
     "bulletIcon": {
-      "__uuid__": "1f0bd799-ce64-4cf8-9710-588985fcc426"
+      "__uuid__": "d210989a-b0e7-461f-8d20-37b15cd450ec"
+    },
+    "audio": {
+      "__uuid__": "2b1b30b1-9945-471b-9dda-763177b9274b"
     },
     "_id": "77gvaNkkBKLIn6wcyN3i0/"
   },

@@ -583,7 +583,23 @@ canvas无法获取已上屏的对象，所以需要维持对象的状态。
   模拟子弹发射的效果，炮塔、发射、爆炸
 
 2. 动态创建节点
+
   游戏中有的节点是动态创建的，如子弹节点 只有在发射的时候才创建
 
 3. 附加脚本组件
-  
+
+  动态创建的节点，也可以附件脚本组件：
+
+  新建脚本并附加到节点 `let comp = node.addComponent(类名)`
+
+  注意 : 脚本类名规范化，因为需要在别的类中引入
+
+  <img src="./image/Snipaste_2022-01-05_14-58-23.png"/>
+
+  将以上脚本引入到需要的组件中：
+
+  ```js
+  import BulletScript from './BulletScript'
+  .....
+  let script = node.addComponent(BulletScript)
+  ```

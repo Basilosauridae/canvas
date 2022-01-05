@@ -1,5 +1,7 @@
 // 动态创捷节点
 
+import BulletScript from "./BulletScript";
+
 const {ccclass, property} = cc._decorator;
 
 @ccclass
@@ -8,10 +10,12 @@ export default class NewClass extends cc.Component {
     @property(cc.SpriteFrame)
     bulletIcon:cc.SpriteFrame = null
 
+    @property(cc.AudioClip)
+    audio:cc.AudioClip
+
     onLoad () {
         this.node.on('touchstart',this.onTouch,this)
     }
-
     onTouch(){
         this.fire()
     }
@@ -29,6 +33,12 @@ export default class NewClass extends cc.Component {
 
         bullet.parent = this.node //作为子节点
 
-        bullet.setPosition(cc.v3(0,270,0)) //设置初始位置
+        bullet.setPosition(cc.v3(0,250,0)) //设置初始位置
+
+        if(this.audio != null)
+            cc.audioEngine.play(this.audio,false,1)
+
+        // 加挂一个脚本组件
+        let script = bullet.addComponent(BulletScript)
     }
 }
