@@ -13,6 +13,9 @@ export default class NewClass extends cc.Component {
     @property(cc.AudioClip)
     audio:cc.AudioClip
 
+    @property(cc.SpriteFrame)
+    explodeEffect:cc.SpriteFrame = null
+
     onLoad () {
         this.node.on('touchstart',this.onTouch,this)
     }
@@ -40,5 +43,6 @@ export default class NewClass extends cc.Component {
 
         // 加挂一个脚本组件
         let script = bullet.addComponent(BulletScript)
+        script.explodeEffect = this.explodeEffect
     }
 }
