@@ -1,9 +1,12 @@
-// 控制炮塔旋转的角度
+// 控制炮塔旋转的角度、子弹的发射和炮口方向一致
 
 const {ccclass, property} = cc._decorator;
 
 @ccclass
 export default class NewClass extends cc.Component {
+
+    @property(cc.SpriteFrame)
+    bulletIcon:cc.SpriteFrame = null //子弹图片
 
     startPos:cc.Vec2 = null //触摸点开始的位置
     startAngle:number = null//触摸点开始的角度
@@ -38,5 +41,31 @@ export default class NewClass extends cc.Component {
         // cc.log('炮口摆动'+sweep_angle+'修正后的角度'+angle)
         this.node.angle = angle
     }
-    onTouchEnd(){}
+    onTouchEnd(e:cc.Event.EventTouch){
+        this.fire()
+    }
+    // 开火
+    protected fire(): void {
+        if(this.bulletIcon==null){cc.log('请设置子弹图片');return}
+
+        // 炮口的指向就是子弹的运行方向
+        let angle:number = this.node.angle
+        let radian = angle * Math.PI/180+90 //根据自己图片调整
+        let direction = cc.v2(Math.cos(radian),Math.sin(radian)) //标准化向量
+
+        // 动态创建一个Node,添加Sprite组件
+        let bullet:cc.Node = new cc.Node()
+        let sprite:cc.Sprite = bullet.addComponent(cc.Sprite)
+        sprite.spriteFrame = this.bulletIcon
+
+        bullet.parent = this.node.parent //指定父节点
+
+        // 角度及初始位置
+        bullet.angle = this.node.angle//子弹的角度
+        console.log(bullet.angle)
+        let r = 60 //子弹与射击基准的距离
+        let bullet_x = r*direction.x
+        let bullet_y = r*direction.y
+        bullet.setPosition(cc.v3(bullet_x,bullet_y,0)) //子弹的初始位置
+    }
 } 
