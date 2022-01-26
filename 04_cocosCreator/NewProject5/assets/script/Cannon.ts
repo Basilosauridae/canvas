@@ -2,6 +2,8 @@
 
 const {ccclass, property} = cc._decorator;
 
+import Bullet from './Bullet'
+
 @ccclass
 export default class NewClass extends cc.Component {
 
@@ -50,22 +52,25 @@ export default class NewClass extends cc.Component {
 
         // 炮口的指向就是子弹的运行方向
         let angle:number = this.node.angle
-        let radian = angle * Math.PI/180+90 //根据自己图片调整
+        let radian = angle * Math.PI/180+90
         let direction = cc.v2(Math.cos(radian),Math.sin(radian)) //标准化向量
 
         // 动态创建一个Node,添加Sprite组件
-        let bullet:cc.Node = new cc.Node()
-        let sprite:cc.Sprite = bullet.addComponent(cc.Sprite)
-        sprite.spriteFrame = this.bulletIcon
+        let bulletNode:cc.Node = new cc.Node()
+        let sprite:cc.Sprite = bulletNode.addComponent(cc.Sprite)
+        sprite.spriteFrame = this.bulletIcon //设置子弹的图片
 
-        bullet.parent = this.node.parent //指定父节点
+        bulletNode.parent = this.node.parent //指定父节点
 
         // 角度及初始位置
-        bullet.angle = this.node.angle//子弹的角度
-        console.log(bullet.angle)
+        bulletNode.angle = this.node.angle//子弹的角度
         let r = 60 //子弹与射击基准的距离
         let bullet_x = r*direction.x
         let bullet_y = r*direction.y
-        bullet.setPosition(cc.v3(bullet_x,bullet_y,0)) //子弹的初始位置
+        bulletNode.setPosition(cc.v3(bullet_x,bullet_y,0)) //子弹的初始位置
+
+        // 给子弹附加脚本组件
+        let bullet:Bullet = bulletNode.addComponent(Bullet)
+        bullet.direction = direction
     }
 } 
