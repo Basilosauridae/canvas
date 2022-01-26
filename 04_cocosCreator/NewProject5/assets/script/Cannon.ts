@@ -52,7 +52,7 @@ export default class NewClass extends cc.Component {
 
         // 炮口的指向就是子弹的运行方向
         let angle:number = this.node.angle
-        let radian = angle * Math.PI/180+90
+        let radian = angle * Math.PI/180 + 90
         let direction = cc.v2(Math.cos(radian),Math.sin(radian)) //标准化向量
 
         // 动态创建一个Node,添加Sprite组件
