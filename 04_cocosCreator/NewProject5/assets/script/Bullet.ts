@@ -18,8 +18,8 @@ export default class NewClass extends cc.Component {
 
     onTimer(){
         if(this.node.y > 400){//靶标与射击基准之间的距离
-            // this.dismiss()
-            // return
+            this.unschedule(this.onTimer)
+            
             if(this.isHit())
                 this.success()
             else
@@ -45,7 +45,7 @@ export default class NewClass extends cc.Component {
         let selfPos:cc.Vec2 = this.getWordLocation(this.node)
         let distance:number = Math.abs(targetPos.x - selfPos.x) //x距离方向
         cc.log('靶标x='+ targetPos.x + ',子弹x='+selfPos.x)
-        
+
         if(distance < 50) return true
         return false
     }
@@ -57,10 +57,43 @@ export default class NewClass extends cc.Component {
     success(){
         // 添加成功的特效
         cc.log('命中目标')
-        this.dismiss()
+        this.explode()
+        this.cheer()
     }
     failed(){
         cc.log('脱靶')
         this.dismiss()
+    }
+    // 爆炸效果
+    explode(){
+        cc.log('爆炸效果...')
+        let sp:cc.Sprite = this.node.getComponent(cc.Sprite)
+        sp.spriteFrame = this.explodeEffect
+
+        this.node.scale = 0.1
+
+        let self = this
+        cc.tween(this.node)
+            .to(0.4,{ scale:1 })
+            .to(0.2,{ opacity:0 })
+            .call(function(){ self.dismiss() })
+            .start()
+
+    }
+    // 加分效果
+    cheer(){
+        let node:cc.Node = new cc.Node()
+        let label:cc.Label = node.addComponent(cc.Label)
+        label.string = "+10分"
+        node.color = new cc.Color(255,0,0)
+        node.parent = this.node.parent
+        node.setPosition(cc.v3(0,250,0))
+        node.opacity = 200
+
+        cc.tween(node)
+            .to(0.5,{ scale:1.5 })
+            .to(0.2,{ opacity:0 })
+            .call(function(){ node.destroy() })
+            .start()
     }
 }

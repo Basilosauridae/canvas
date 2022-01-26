@@ -180,7 +180,7 @@
       "array": [
         0,
         0,
-        333.5203590907889,
+        357.7830204584347,
         0,
         0,
         0,
@@ -400,8 +400,8 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        122.328,
-        177.932,
+        0,
+        185,
         0,
         0,
         0,
@@ -589,8 +589,8 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        143.083,
-        -183.697,
+        0,
+        -180,
         0,
         0,
         0,
@@ -815,6 +815,9 @@
     "_enabled": true,
     "bulletIcon": {
       "__uuid__": "df2b0595-560f-45d5-811b-f93b306012e8"
+    },
+    "explodeEffect": {
+      "__uuid__": "ea4bcb10-f2ab-4c8a-8ad9-fce543618a04"
     },
     "_id": "7cUm+N+txDhJgzulV3gjL+"
   },

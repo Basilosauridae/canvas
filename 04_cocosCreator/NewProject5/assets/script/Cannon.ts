@@ -10,6 +10,9 @@ export default class NewClass extends cc.Component {
     @property(cc.SpriteFrame)
     bulletIcon:cc.SpriteFrame = null //子弹图片
 
+    @property(cc.SpriteFrame)
+    explodeEffect:cc.SpriteFrame = null //爆炸效果
+
     startPos:cc.Vec2 = null //触摸点开始的位置
     startAngle:number = null//触摸点开始的角度
 
@@ -72,5 +75,7 @@ export default class NewClass extends cc.Component {
         // 给子弹附加脚本组件
         let bullet:Bullet = bulletNode.addComponent(Bullet)
         bullet.direction = direction
+        bullet.target = cc.find('Canvas/靶子')
+        bullet.explodeEffect = this.explodeEffect
     }
 } 
