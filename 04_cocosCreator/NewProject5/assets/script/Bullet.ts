@@ -74,7 +74,7 @@ export default class NewClass extends cc.Component {
 
         let self = this
         cc.tween(this.node)
-            .to(0.4,{ scale:1 })
+            .to(0.4,{ scale:0.2 })
             .to(0.2,{ opacity:0 })
             .call(function(){ self.dismiss() })
             .start()
