@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <canvas id="c1" width="600" height="400"></canvas><br>
+</body>
+<script>
+  var c1 = document.getElementById('c1')
+
+  if(!c1.getContext){
+    alert('当前浏览器不支持canvas,请下载最新的浏览器');
+  }
+  var ctx = c1.getContext('2d')
+  ctx.beginPath()
+
+  ctx.arc(75,75,50,0,Math.PI*2)//画圆脸
+  ctx.moveTo(110,75)
+
+  ctx.arc(75,75,35,0,Math.PI)//画嘴巴
+  ctx.moveTo(65,65)
+  
+  ctx.arc(60,65,5,0,Math.PI*2)//画左眼
+  ctx.moveTo(95,65)
+
+  ctx.arc(90,65,5,0,Math.PI*2)//画右眼
+
+  ctx.stroke()
+  ctx.closePath()
+
+</script>
+</html>

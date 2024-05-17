@@ -1,12 +1,46 @@
----
-title: canvas笔记
-date: 2021.5.18
----
-# canvas
+# canvas-config
 
 长久以来，web上的动画是flash,缺点需要安装Adobe Flash Player,漏洞多，重量大，卡顿和不流畅
 
 canvas是一个轻量级画布，使用canvas进行Javascript的编程，不卡顿
+
+## directory
+
+| dir | cont  |
+| cavas-basic | canvas基础 |
+| canvas-cocos |  canvas-cocos + cocoscreator 2D |
+
+## canvas-basic
+
+参考[mdn-canvas](https://developer.mozilla.org/zh-CN/docs/Web/API/CanvasRenderingContext2D)
+
+### 1.认识canvas
+id:标识元素的唯一性,with/height:画布的宽高
+```js
+var c1 = document.getElementById('c1')//找到画布
+var ctx = c1.getContext('2d')//获取画笔
+ctx.fillRect(100,200,300,300)//拿画笔绘制图形
+```
+
+### 2.canvas上下文对象与浏览器支持
+- `var ctx = c1.getContext('2d')`获取画笔，就是获取上下文对象；
+- 处理canvas是否兼容：判断是否有画笔
+
+### 3.canvas绘制基本图形
+- 填充模式，canvas的style属性设置；
+- 路径模式，
+  - 写法一：ctx.strokeRect(x轴坐标，y轴坐标，矩形宽度，矩形高度)
+  - 写法二：拆开写法ctx.rect(100,250,200,100)；ctx.stroke()
+
+### 4.canvas绘制圆形
+- 圆形：绘制圆弧的方法：ctx.arc(圆心x,圆心y,半径,开始的角度，结束的角度，逆时针还是顺时针)，前5个是必传参，默认顺时针false
+- 绘制笑脸：需要开始结束画笔动作 ctx2.beginPath、stroke、closePath
+- 绘制笑脸2：使用ctx.moveTo简化步骤
+
+### 5.绘制折线线段
+
+
+## canvas-cocos
 
 ### 1.1 Hello World
 
@@ -90,7 +124,7 @@ canvas无法获取已上屏的对象，所以需要维持对象的状态。
 
 
 
-# cocoscreator 2D
+## cocoscreator 2D
 
 ### 概叙
 

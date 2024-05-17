@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <canvas id="c1" width="600" height="400"></canvas>
+</body>
+<script>
+  var c1 = document.getElementById('c1')
+  if(!c1.getContext){
+    alert('当前浏览器不支持canvas,请下载最新的浏览器');
+  }
+  var ctx = c1.getContext('2d')
+  // 绘制圆弧的方法：ctx.arc(圆心x,圆心y,半径,开始的角度，结束的角度，逆时针还是顺时针)，前5个是必传参，默认顺时针false
+  // Math.PI表示180°
+  ctx.arc(300,200,50,0,Math.PI*2)
+  ctx.fill()
+</script>
+</html>

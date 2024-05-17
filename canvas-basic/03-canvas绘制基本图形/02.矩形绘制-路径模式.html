@@ -1,0 +1,44 @@
+<!--
+ * @Author: huying 2369700690@qq.com
+ * @Date: 2024-05-17 18:27:41
+ * @LastEditors: huying 2369700690@qq.com
+ * @LastEditTime: 2024-05-17 18:58:56
+ * @FilePath: \canvas-cocos\canvas-basic\03-canvas绘制基本图形\02.矩形绘制-路径模式.html
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 
+  路径模式：两种写法
+  -->
+  <canvas id="c1" width="600" height="600"></canvas>
+</body>
+
+<script>
+  // 1.找到画布
+  var c1 = document.getElementById('c1')
+  // 2.获取画笔，上下文对象
+  var ctx = c1.getContext('2d')
+  console.log( ctx,'画笔' );
+  // 3.绘制图形
+  // 3.1 绘制矩形fillRect(位置x，y,宽，高)
+  // ctx.fillRect(100,200,300,300)
+  // 3.2 绘制矩形路径
+  ctx.strokeRect(100,100,200,100)//写法一
+
+  // 写法二：拆开写法
+  ctx.rect(100,250,200,100)
+  ctx.stroke()//显示路径
+
+  // 处理canvas兼容问题判断是否有画笔
+  if(!c1.getContext){
+    alert('当前浏览器不支持canvas,请下载最新的浏览器');
+  }
+</script>
+</html>
